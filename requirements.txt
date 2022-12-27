@@ -1,5 +1,0 @@
-gscholar
-bibtexparser
-pandas
-httplib2
-bs4
