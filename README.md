@@ -1,5 +1,8 @@
-# base_personal_research
-Template Repository for Research Code
+# bibtex-utils
+
+Code base for bibtex manipulation at the MINi Lab (UdS).
+
+https://biblatex-linter.herokuapp.com/
 
 # Installation
 ``` 

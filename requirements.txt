@@ -1,6 +1,5 @@
-numpy
-dipy
-fury
-scipy
-vtk
-matplotlib
+gscholar
+bibtexparser
+pandas
+httplib2
+bs4
