@@ -47,8 +47,7 @@ def remove_duplicates(ori_bib):
 
     db = BibDatabase()
     db.entries = entries_list
-    print('\t{} duplicates in this file.'.format(
-        len(entries) - len(db.entries)))
+    print(f'\t{len(entries) - len(db.entries)} duplicates in this file.')
 
     return db
 
@@ -57,27 +56,30 @@ def main():
     parser = _build_arg_parser()
     args = parser.parse_args()
 
-    if not os.path.isfile(args.in_bib):
-        raise IOError('{} does not exist!'.format(args.in_bib))
+    for in_bib in args.in_bib:
+        if not os.path.isfile(in_bib):
+            raise IOError(f'{in_bib} does not exist!')
 
     if os.path.isfile(args.out_bib) and not args.force_overwrite:
-        parser.error('{} exists, delete it first.'.format(args.out_bib))
+        parser.error(f'{args.out_bib} exists, delete it first.')
 
     entries_list = []
     for i, filename in enumerate(args.in_bib):
         with open(filename, 'r') as bibfile:
             ori_bib = bibtexparser.load(bibfile)
 
-        print('{} entries in file #{}'.format(len(ori_bib.entries), i))
+        print(f'{len(ori_bib.entries)} entries in file #{i+1}')
 
         out_bib = remove_duplicates(ori_bib)
         entries_list.extend(out_bib.entries)
-
-    print('\nFinal file has {} entries.'.format(len(entries_list)))
+    
+    print(f'{len(entries_list)} entries merged file')
     out_bib = remove_duplicates(entries_list)
     writer = BibTexWriter()
     with open(args.out_bib, 'w') as bibfile:
         bibfile.write(writer.write(out_bib))
+    
+    print(f'{len(out_bib.entries)} entries in total, {}.')
 
 
 if __name__ == '__main__':

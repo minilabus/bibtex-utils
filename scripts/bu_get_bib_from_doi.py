@@ -77,7 +77,7 @@ def main():
     args = parser.parse_args()
 
     if os.path.isfile(args.out_bib) and not args.force_overwrite:
-        parser.error('{} exists, delete it first.'.format(args.out_json))
+        parser.error('{} exists, delete it first.'.format(args.out_bib))
 
     for filename in args.in_doi:
         # Create the bib object.
