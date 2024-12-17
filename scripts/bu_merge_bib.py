@@ -79,7 +79,7 @@ def main():
     with open(args.out_bib, 'w') as bibfile:
         bibfile.write(writer.write(out_bib))
     
-    print(f'{len(out_bib.entries)} entries in total, {}.')
+    print(f'{len(out_bib.entries)} entries in total.')
 
 
 if __name__ == '__main__':
