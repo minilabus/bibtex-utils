@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bibtex-utils"
+version = "0.2.0"
+description = "Tools for BibTeX manipulation at the MINi Lab (UdS)."
+readme = "README.md"
+license = {text = "BSD-2-Clause"}
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "bibtexparser==2.0.0b3",
+    "nltk>=3.8",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+]
+
+[project.urls]
+Homepage = "https://github.com/minilabus/bibtex-utils"
+
+[project.scripts]
+bu_ieee_case = "bibtex_utils.ieee_case:main"
+bu_get_bib_from_doi = "bibtex_utils.get_bib_from_doi:main"
+bu_harmonize_tag_zenodo = "bibtex_utils.harmonize_tag_zenodo:main"
+bu_merge_bib = "bibtex_utils.merge_bib:main"
+
+[tool.setuptools.packages.find]
+include = ["bibtex_utils*"]
+
+[tool.setuptools.package-data]
+bibtex_utils = ["bib_data/*.json"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP"]
